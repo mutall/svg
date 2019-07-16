@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>kevlin </title>
+    <style>
+        text {
+            font: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Linking to the Kevin Lindey library -->
+    <script src="./node_modules/kld-intersections/dist/index-umd.js"></script>
+    <script src="./main.js"></script> //
+    <script>
+        //Define the coordinates of the circle centers
+        const c1 = new KldIntersections.Point2D(25, 100);
+        const c2 = new KldIntersections.Point2D(200, 100);
+
+        //
+        //Us the library to define circle1, centered on 25/30 with radius 50. 
+        //What units are these figures? How to we scale them to %?
+        const circle1 = KldIntersections.ShapeInfo.circle(c1.x, c1.y, 15);
+        
+        const ellip = new MutallEllipse(c1.x, c1.y, 15, ["", "", ""]);
+        const attribLine = ellip.genAttribSvg();
+        const points = ellip.genPoint();
+        console.log(points);
+        
+        
+        //Construct the svg element from the circle1 
+        const svg =
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"> 
+                <style>
+                text{
+                    font:italic;
+                    color:red;
+                }
+                </style>
+                        <circle 
+                            cx="${c1.x}" 
+                            cy="${c1.y}" 
+                            r="15" 
+                           stroke="blue" fill="none"/>
+                        
+
+                           <line 
+                            x1="${attribLine.x1}" 
+                            y1="${attribLine.y1}" 
+                            x2="${attribLine.x2}" 
+                            y2="${attribLine.y2}"
+                            stroke="purple"
+                           />
+
+        
+                </svg>`;
+        //
+        //Write the svg text to the browser.
+        document.write(svg);
+    </script>
+</body>
+
+</html>
