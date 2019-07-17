@@ -9,7 +9,7 @@ class MutallEllipse {
     genAttribSvg() {
         const x1 = this.x;
         const y1 = this.y - this.r;
-        const y2 = y1 - (3 * this.attributes.length);
+        const y2 = y1 - (10 * this.attributes.length);
         
         return {
             x1,
@@ -22,14 +22,27 @@ class MutallEllipse {
     genPoint() {
         const line = this.genAttribSvg();
         const space = (line.y2 - line.y1) / this.attributes.length;
-        let data = {}
+        let data = "";
     
         let c = 0;
-        for (let index = 1; index <= this.attributes.length; index++) {
-            data[`p${index}`] = line.y2 + c;
+
+        this.attributes.forEach(element => {
+            let string = `<circle 
+                            cx="${this.x}" 
+                            cy="${line.y2 + c}" 
+                            r="1.5" 
+                            stroke="white"
+                            fill="blue"/>
+                            
+                            <text x="${this.x +3}" y="${line.y2 + c}" class="txt" fill="black">${element}</text>
+                            `
+            data = data + string;
             c = c - space;
-        }
+        });
+        
         return data
     }
+
+
 }
 
