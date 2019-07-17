@@ -3,8 +3,8 @@
 <head>
     <title>kevlin </title>
     <style>
-        text {
-            font: italic;
+        .txt{
+            font-size: 4px;
         }
     </style>
 </head>
@@ -23,7 +23,7 @@
         //What units are these figures? How to we scale them to %?
         const circle1 = KldIntersections.ShapeInfo.circle(c1.x, c1.y, 15);
         
-        const ellip = new MutallEllipse(c1.x, c1.y, 15, ["", "", ""]);
+        const ellip = new MutallEllipse(c1.x, c1.y, 15, ["name", "age", "gender"]);
         const attribLine = ellip.genAttribSvg();
         const points = ellip.genPoint();
         console.log(points);
@@ -32,12 +32,6 @@
         //Construct the svg element from the circle1 
         const svg =
             `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"> 
-                <style>
-                text{
-                    font:italic;
-                    color:red;
-                }
-                </style>
                         <circle 
                             cx="${c1.x}" 
                             cy="${c1.y}" 
@@ -50,9 +44,9 @@
                             y1="${attribLine.y1}" 
                             x2="${attribLine.x2}" 
                             y2="${attribLine.y2}"
-                            stroke="purple"
+                            stroke="black"
                            />
-
+                            ${points}
         
                 </svg>`;
         //
